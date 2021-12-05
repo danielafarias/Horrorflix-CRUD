@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/style/main.css" />
+    <link rel="stylesheet" href="../public/style/responsive.css" />
+    <link rel="icon" href="../public/img/knife-icon.svg" />
+
+    <!--owl css-->
+    <link rel="stylesheet" href="../public/style/owl/owl.carousel.min.css" />
+    <link
+      rel="stylesheet"
+      href="../public/style/owl/owl.theme.default.min.css"
+    />
+
+    <title>Horrorflix</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h2 class="logo">HORRORFLIX</h2>
+        <nav>
+          <a href="#">Início</a>
+          <a href="#">Cadastrar</a>
+          <a href="#">Filmes</a>
+          <a href="#">Github</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="principal-movie">
+        <div class="container">
+          <form action="#" method="post">
+            <h3 class="title">Cadastre um filme</h3>
+            <div class="input">
+              <label>Título:</label>
+              <input placeholder="Informe o título do filme" />
+            </div>
+            <div class="input">
+              <label>Capa:</label>
+              <input placeholder="Insira o link da imagem" />
+            </div>
+            <div class="input">
+              <label>Trailer:</label>
+              <input placeholder="Insira o link do youtube" />
+            </div>
+            <div class="input">
+              <label>Gênero:</label>
+              <select>
+                <option>Terror Psicológico</option>
+                <option>Thriller</option>
+                <option>Sobrenatural</option>
+                <option>Found Footage</option>
+                <option>Gore</option>
+                <option>Slasher</option>
+                <option>Body Horror</option>
+                <option>Trash</option>
+                <option>Terror Cósmico</option>
+                <option>Terror Cômico</option>
+                <option>Terror Teen</option>
+              </select>
+            </div>
+            <div class="input">
+              <label>Nota:</label>
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+            </div>
+            <div class="buttons">
+              <button
+                role="button"
+                type="submit"
+                class="button"
+                target="_blank"
+              >
+                <i class="fas fa-paper-plane"></i>
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div class="movies">
+      <div class="owl-carousel owl-theme">
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini01.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini02.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini03.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini04.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini05.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini06.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini07.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini08.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini09.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+        <section class="item">
+          <img
+            class="movie-box"
+            src="../public/img/mini10.jpg"
+            alt="Poster de um filme"
+          />
+        </section>
+      </div>
+    </div>
+
+    <section class="modal">
+      <header>
+        <h2>Detalhes do Filme</h2>
+        <button><i class="fas fa-times"></i></button>
+      </header>
+      <main>
+          <div class="actions">
+              <img
+                class="movie-box"
+                src="../public/img/mini01.jpg"
+                alt="Poster de um filme"
+              />
+            <div class="buttons">
+                <button
+                  role="button"
+                  class="button"
+                  target="_blank"
+                >
+                <i class="fas fa-edit"></i>
+                  Editar
+                </button>
+                <button
+                  role="button"
+                  class="button"
+                  target="_blank"
+                >
+                <i class="fas fa-trash"></i></i>
+                  Apagar
+                </button>
+              </div>
+          </div>
+        <article>
+          <h3>Brinquedo Assasino</h3>
+          <div class="badges">
+            <div class="badge"><i class="fas fa-film"></i> Thriller</div>
+            <div class="badge"><i class="fas fa-star"></i> 10</div>
+          </div>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/z90_HJnqc3A"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </article>
+      </main>
+    </section>
+
+    <!--owl jquery-->
+    <script src="../public/js/owl/jquery.min.js"></script>
+    <script src="../public/js/owl/owl.carousel.min.js"></script>
+    <script src="../public/js/owl/setup.js"></script>
+
+    <script
+      src="https://kit.fontawesome.com/7a7baf6e14.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
