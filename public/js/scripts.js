@@ -186,3 +186,17 @@ const limpaCampos = () => {
     document.getElementById('salario').value = '';
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+var item = document.getElementById("item");
+
+var close = document.getElementById("close");
+
+var modal = document.getElementById("modal");
+
+item.onclick = function() {
+    modal.style.display = "block";
+  }
+close.onclick = function() {
+    modal.style.display = "none";
+  } 
