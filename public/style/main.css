@@ -132,6 +132,19 @@ header nav a:hover {
     margin-top: 10px;
 }
 
+.movies #cards {
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+}
+
+.movies #cards .item {
+   margin: 0 0.6rem;
+   width: 300px;
+   height: 400px;
+}
+
+
 .modal {
     background-color: var(--black);
     position: fixed;

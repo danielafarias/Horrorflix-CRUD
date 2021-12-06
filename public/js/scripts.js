@@ -1,71 +1,83 @@
-// salvar a url do backend em uma variavel para ser ultiliza depois na hora da chamada da api
 const apiUrl = "http://localhost:3000";
-let modoEdicao = false;
-let idEdicao = 0;
+let editMode = false;
+let editId = 0;
 
-// estou mapeando o elemento lista (<table></table>) do html.
-const lista = document.getElementById("lista");
+const cards = document.getElementById("cards");
 
-// crio uma funcao onde é possivel realizar uma requisicao [GET] para a api
-const getVagas = async () => {
+const getMovies = async () => {
 
-  // FETCH - É usado para se comunicar via requisicao http (GET, POST, PUT, PATCH, DELETE);
-  // Response - é a resposta se a chamada da api foi feita com sucesso (status 200);
-  // FETCH quando nao passada configuracao e apenas a url ele faz uma chamada do tipo [GET];
-  // const chamadaApi = fetch(`${apiUrl}/vagas`)
-  // chamadaApi.then((response) => {
-  //     console.log('RESPOSTA REQUISICAO', response);
-  //     return response.json();
-  // })
-  // .then((vagas) => {
-  //     console.log('RESPOSTA DADOS JSON', vagas);
-  // })
-  const response = await fetch(`${apiUrl}/vagas`);
-  const vagas = await response.json();
+  const response = await fetch(`${apiUrl}/movies`);
+  const movies = await response.json();
 
-  vagas.map((vaga) => {
-    console.log(vaga.empresa);
-    lista.insertAdjacentHTML(
+  movies.map((movie) => {
+    console.log(movie.title);
+    cards.insertAdjacentHTML(
       "beforeend",
       `
-            <tr>
-                <th scope="row">${vaga.id}</th>
-                <td>${vaga.empresa}</td>
-                <td>${vaga.oportunidade}</td>
-                <td>${vaga.tipo}</td>
-                <td>${vaga.salario}</td>
-                <td>
-                    <button class="btn btn-primary" onclick="editaVaga(${vaga.id})">Editar</button>
-                    <button class="btn btn-danger" onclick="deleteVaga(${vaga.id})">Deletar</button>
-                </td>
-            </tr>
+            <div class="item" id="item" key="${movie.id}"">
+                <img
+                    class="movie-box"
+                    src="${movie.cover}"
+                    alt="Poster de um filme"
+                />
+            </div>
         `
     );
   });
 };
 
-getVagas();
+getMovies();
 
-const escolherVaga = async () => {
+const movieDetails = async () => {
 
-  // buscando o que o usuario digitou no input
-  const idDigitado = document.getElementById("idVaga").value;
-  // fazendo a chamdada para a api /vagas/{id} para pegar a vaga individual
-  const response = await fetch(`${apiUrl}/vagas/${idDigitado}`);
-  // salvo o objeto retornado pelo backend;
-  const vaga = await response.json();
+  const id = document.getElementById("idMovie").value;
+  const response = await fetch(`${apiUrl}/movies/${id}`);
+  const movie = await response.json();
 
-  // mapeando a tabela do html e inserindo uma vaga dentro
-  document.getElementById("vaga").insertAdjacentHTML(
+  document.getElementById("modal-content").insertAdjacentHTML(
     "beforeend",
     `
-        <tr>
-            <th scope="row">${vaga.id}</th>
-            <td>${vaga.empresa}</td>
-            <td>${vaga.oportunidade}</td>
-            <td>${vaga.tipo}</td>
-            <td>${vaga.salario}</td>
-        </tr>
+            <div class="actions">
+                <img
+                class="movie-box"
+                src="${movie.cover}"
+                alt="Poster de um filme"
+                />
+                <div class="buttons">
+                    <button
+                        role="button"
+                        class="button"
+                        target="_blank"
+                    >
+                    <i class="fas fa-edit"></i>
+                        Editar
+                    </button>
+                    <button
+                        role="button"
+                        class="button"
+                        target="_blank"
+                    >
+                    <i class="fas fa-trash"></i></i>
+                        Apagar
+                    </button>
+                    </div>
+            </div>
+            <article>
+                <h3>${movie.title}</h3>
+                <div class="badges">
+                    <div class="badge"><i class="fas fa-film"></i> ${movie.genre}</div>
+                    <div class="badge"><i class="fas fa-star"></i> ${movie.score}</div>
+                </div>
+                <iframe
+                width="560"
+                height="315"
+                src="${movie.trailer}"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                ></iframe>
+            </article>
     `
   );
 };
