@@ -200,15 +200,13 @@ const limpaCampos = () => {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-var item = document.getElementById("item");
+// var item = document.getElementById("item");
+// var modal = document.getElementById("modal");
+// item.onclick = function() {
+//     modal.style.display = "block";
+//   }
 
 var close = document.getElementById("close");
-
-var modal = document.getElementById("modal");
-
-item.onclick = function() {
-    modal.style.display = "block";
-  }
 close.onclick = function() {
     modal.style.display = "none";
   } 
