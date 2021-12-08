@@ -135,11 +135,11 @@ header nav a:hover {
 .movies #cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     height: 300px;
 }
 
 .movies #cards .item {
-   margin: 0 0.6rem;
    width: 300px;
    height: 400px;
 }
@@ -222,3 +222,21 @@ header nav a:hover {
     padding: 0.5rem;
  }
 
+ /* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--black);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--pearl);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--red);
+  }
+  

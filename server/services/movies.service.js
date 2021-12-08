@@ -2,7 +2,7 @@ const Movies = [
     {
         id: 1,
         title: "Brinquedo Assassino",
-        cover: "https://lh3.googleusercontent.com/proxy/QekYiqSR3XbTlMn_3ULPpDDoMwOX8LWJYokkUEztiWx4jh2H6B8F6_6LtBN7kGqVX1AbiPMKJQXwQBTilbRKs_pT2NbfdHDkzje-_nqnNo8T6E3kvJz7YWlfczN13LqzxqUd4g",
+        cover: "https://br.web.img2.acsta.net/pictures/14/10/10/18/18/494547.jpg",
         trailer: "https://www.youtube.com/embed/z90_HJnqc3A",
         genre: "Thriller",
         score: 10
