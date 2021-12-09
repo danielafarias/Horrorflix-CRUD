@@ -5,7 +5,6 @@ let editId = 0;
 const cards = document.getElementById("cards");
 
 const getMovies = async () => {
-
   const response = await fetch(`${apiUrl}/movies`);
   const movies = await response.json();
 
@@ -14,7 +13,7 @@ const getMovies = async () => {
     cards.insertAdjacentHTML(
       "beforeend",
       `
-            <div class="item" id="item" key="${movie.id}"">
+            <div class="item" id="item" key="${movie.id}" onclick="movieDetails">
                 <img
                     class="movie-box"
                     src="${movie.cover}"
@@ -29,10 +28,14 @@ const getMovies = async () => {
 getMovies();
 
 const movieDetails = async () => {
-
-  const id = document.getElementById("idMovie").value;
   const response = await fetch(`${apiUrl}/movies/${id}`);
   const movie = await response.json();
+
+  var item = document.getElementById("item");
+  var modal = document.getElementById("modal");
+  item.onclick = function () {
+    modal.style.display = "block";
+  };
 
   document.getElementById("modal-content").insertAdjacentHTML(
     "beforeend",
@@ -84,119 +87,130 @@ const movieDetails = async () => {
 
 // Ele mapeia os dados do formulario que o usuario digitou e envia o objeto criado para a sua funcao responsavel (seja edicao ou cadastro)
 const submitForm = async () => {
+  // mapear os inputs com os dados que o usuario digitou idependente se é edicao ou cadastro
+  const title = document.getElementById("title").value;
+  const cover = document.getElementById("cover").value;
+  const trailer = document.getElementById("trailer").value;
+  const genre = document.getElementById("genre").value;
+  const score = document.getElementById("score").value;
+  console.log(title, cover, trailer, genre, score);
 
-    // mapear os inputs com os dados que o usuario digitou idependente se é edicao ou cadastro
-    const empresa = document.getElementById('empresa').value;
-    const oportunidade = document.getElementById('oportunidade').value;
-    const tipo = document.getElementById('tipo').value;
-    const salario = document.getElementById('salario').value;
-    console.log(empresa, oportunidade, tipo, salario);
+  const movie = {
+    title,
+    cover,
+    trailer,
+    genre,
+    score
+  };
+  console.log(movie);
 
-    // monta o objeto para ser enviado para o backend
-    const vaga = {
-        empresa,
-        oportunidade,
-        tipo,
-        salario
-    }
-    console.log(vaga);
+  if (modoEdicao) {
+    putMovie(movie);
+  } else {
+    postMovie(movie);
+  }
+};
 
-    // JSON Stringfy = transforma um objeto/array js em um JSON string
-    if(modoEdicao) {
-        putVaga(vaga);
-    }else {
-        postVaga(vaga);
-    }
-    
-}
+const postMovie = async (movie) => {
+  const response = await fetch(`${apiUrl}/movies/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(movie),
+  });
+  const data = await response.json();
+  alert(data.message);
+  // faz a chamada para a api com algumas configuracoes****
+  cards.insertAdjacentHTML(
+    "beforeend",
+    `
+          <div class="item" id="item" key="${movie.id}" onclick="movieDetails">
+              <img
+                  class="movie-box"
+                  src="${movie.cover}"
+                  alt="Poster de um filme"
+              />
+          </div>
+      `
+  );
 
-// [POST] http://localhost:3000/vagas/add - Recebe o objeto transforma em JSON e envia para a api atraves do metodo post
-const postVaga = async (vaga) => {
+  getMovies();
+  limpaCampos();
+};
 
-    const response = await fetch(`${apiUrl}/vagas/add`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(vaga)
-    })
-    const data = await response.json();
-    alert(data.message);
-    // faz a chamada para a api com algumas configuracoes****
-    lista.innerHTML = '';
-    getVagas();
-    limpaCampos();
-}
-
-// [PUT] http://localhost:3000/vagas/edit/{id} - recebe o objeto transforma em json e envia para a api juntamente com o seu id para que possa
-// ser editado
 const putVaga = async (vaga) => {
+  const response = await fetch(`${apiUrl}/vagas/edit/${idEdicao}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(vaga),
+  });
+  const data = await response.json();
+  alert(data.message);
+  // faz a chamada para a api com algumas configuracoes****
+  cards.insertAdjacentHTML(
+    "beforeend",
+    `
+          <div class="item" id="item" key="${movie.id}" onclick="movieDetails">
+              <img
+                  class="movie-box"
+                  src="${movie.cover}"
+                  alt="Poster de um filme"
+              />
+          </div>
+      `
+  );
+  getVagas();
+  limpaCampos();
 
-    const response = await fetch(`${apiUrl}/vagas/edit/${idEdicao}`, {
-        method: 'PUT',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(vaga)
-    })
-    const data = await response.json();
-    alert(data.message);
-    // faz a chamada para a api com algumas configuracoes****
-    lista.innerHTML = '';
-    getVagas();
-    limpaCampos();
-
-    modoEdicao = false;
-    idEdicao = 0;
-}
+  modoEdicao = false;
+  idEdicao = 0;
+};
 
 // preenche os dados do formulario de acordo com a vaga encontrada no backend pelo seu id
 const editaVaga = async (id) => {
+  modoEdicao = true;
+  idEdicao = id;
 
-    modoEdicao = true;
-    idEdicao = id;
+  // iremos receber o id e atraves do id fazer uma chamdada para a api para buscar os dados de uma vaga por id
+  const vaga = await getById(id);
 
-    // iremos receber o id e atraves do id fazer uma chamdada para a api para buscar os dados de uma vaga por id
-    const vaga = await getById(id);
-
-    // iremos popular os inputs com os valores recebidos da chamada
-    document.getElementById('empresa').value = vaga.empresa;
-    document.getElementById('oportunidade').value  = vaga.oportunidade;
-    document.getElementById('tipo').value = vaga.tipo;
-    document.getElementById('salario').value = vaga.salario;
-
-}
-
+  // iremos popular os inputs com os valores recebidos da chamada
+  document.getElementById("empresa").value = vaga.empresa;
+  document.getElementById("oportunidade").value = vaga.oportunidade;
+  document.getElementById("tipo").value = vaga.tipo;
+  document.getElementById("salario").value = vaga.salario;
+};
 
 // recebe um id e faz a chamada para a api e retorna o objeto encontrado
 const getById = async (id) => {
-
-    const response = await fetch(`${apiUrl}/vagas/${id}`)
-    const vaga = await response.json();
-    return vaga
-}
+  const response = await fetch(`${apiUrl}/vagas/${id}`);
+  const vaga = await response.json();
+  return vaga;
+};
 
 //[DELETE] http://localhost:3000/vagas/delete/1 Recebo um id e excluo a vaga do backend
 const deleteVaga = async (id) => {
-    const response = await fetch(`${apiUrl}/vagas/delete/${id}`, {
-        method: 'DELETE'
-    })
-    const result = await response.json();
-    alert(result.message);
-    
-    // limpos a lista de vagas para que possa ser renderizada novamente sem a vaga que excluimos
-    lista.innerHTML = '';
-    getVagas();
-}
+  const response = await fetch(`${apiUrl}/vagas/delete/${id}`, {
+    method: "DELETE",
+  });
+  const result = await response.json();
+  alert(result.message);
+
+  // limpos a lista de vagas para que possa ser renderizada novamente sem a vaga que excluimos
+  lista.innerHTML = "";
+  getVagas();
+};
 
 // limpa os campos do formulario (inputs)
 const limpaCampos = () => {
-
-    document.getElementById('empresa').value = '';
-    document.getElementById('oportunidade').value = '';
-    document.getElementById('tipo').value = '';
-    document.getElementById('salario').value = '';
-}
+  document.getElementById("empresa").value = "";
+  document.getElementById("oportunidade").value = "";
+  document.getElementById("tipo").value = "";
+  document.getElementById("salario").value = "";
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -207,6 +221,6 @@ const limpaCampos = () => {
 //   }
 
 var close = document.getElementById("close");
-close.onclick = function() {
-    modal.style.display = "none";
-  } 
+close.onclick = function () {
+  modal.style.display = "none";
+};

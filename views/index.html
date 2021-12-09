@@ -8,13 +8,6 @@
     <link rel="stylesheet" href="../public/style/responsive.css" />
     <link rel="icon" href="../public/img/knife-icon.svg" />
 
-    <!--owl css-->
-    <link rel="stylesheet" href="../public/style/owl/owl.carousel.min.css" />
-    <link
-      rel="stylesheet"
-      href="../public/style/owl/owl.theme.default.min.css"
-    />
-
     <title>Horrorflix</title>
   </head>
   <body>
@@ -33,23 +26,23 @@
     <main>
       <section class="principal-movie">
         <div class="container">
-          <form action="#" method="post" id="register">
+          <form onsubmit="submitForm" method="post" id="register">
             <h3 class="title">Cadastre um filme</h3>
             <div class="input">
-              <label>Título:</label>
-              <input placeholder="Informe o título do filme" />
+              <label for="title">Título:</label>
+              <input id="title" placeholder="Informe o título do filme" name="title"/>
             </div>
             <div class="input">
-              <label>Capa:</label>
-              <input placeholder="Insira o link da imagem" />
+              <label for="cover">Capa:</label>
+              <input id="cover" placeholder="Insira o link da imagem" name="cover"/>
             </div>
             <div class="input">
-              <label>Trailer:</label>
-              <input placeholder="Insira o link do youtube" />
+              <label for="trailer">Trailer:</label>
+              <input id="trailer" placeholder="Insira o link do youtube" name="trailer"/>
             </div>
             <div class="input">
-              <label>Gênero:</label>
-              <select>
+              <label for="genre">Gênero:</label>
+              <select id="genre" name="genre">
                 <option>Terror Psicológico</option>
                 <option>Thriller</option>
                 <option>Sobrenatural</option>
@@ -63,9 +56,9 @@
                 <option>Terror Teen</option>
               </select>
             </div>
-            <div class="input">
-              <label>Nota:</label>
-              <select>
+            <div class="input" name="genre">
+              <label for="score">Nota:</label>
+              <select id="score">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -83,7 +76,6 @@
                 role="button"
                 type="submit"
                 class="button"
-                target="_blank"
               >
                 <i class="fas fa-paper-plane"></i>
                 Enviar
