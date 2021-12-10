@@ -6,8 +6,8 @@ const getMovies = (req, res) => {
 }
 
 const getMoviesById = (req, res) => {
-    const id = req.params.id;
-    const movie = moviesService.getMoviesByIdService(id);
+    const idParam = req.params.id;
+    const movie = moviesService.getMoviesByIdService(idParam);
     res.send(movie)
 }
 

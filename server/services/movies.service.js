@@ -3,7 +3,7 @@ const Movies = [
         id: 1,
         title: "Brinquedo Assassino",
         cover: "https://br.web.img2.acsta.net/pictures/14/10/10/18/18/494547.jpg",
-        trailer: "https://www.youtube.com/embed/z90_HJnqc3A",
+        sinopse: "https://www.youtube.com/embed/z90_HJnqc3A",
         genre: "Thriller",
         score: 10
     },
@@ -11,7 +11,7 @@ const Movies = [
         id: 2,
         title: "Brinquedo Assassino",
         cover: "https://upload.wikimedia.org/wikipedia/pt/1/13/The_Grudge.jpg",
-        trailer: "https://www.youtube.com/embed/IcyoEBGFwWU",
+        sinopse: "https://www.youtube.com/embed/IcyoEBGFwWU",
         genre: "Sobrenatural",
         score: 10
     },
@@ -19,7 +19,7 @@ const Movies = [
         id: 3,
         title: "Halloween Kills",
         cover: "https://br.web.img3.acsta.net/pictures/21/06/28/13/19/4959159.jpg",
-        trailer: "https://www.youtube.com/embed/Ljhe6DHyPVA",
+        sinopse: "https://www.youtube.com/embed/Ljhe6DHyPVA",
         genre: "Slasher",
         score: 7
     },

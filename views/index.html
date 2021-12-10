@@ -10,15 +10,15 @@
 
     <title>Horrorflix</title>
   </head>
-  <body>
+  <body onload="getMovies()">
     <header id="home">
       <div class="container">
         <h2 class="logo">HORRORFLIX</h2>
         <nav>
-          <a href="#">Início</a>
-          <a href="#">Cadastro</a>
-          <a href="#">Filmes</a>
-          <a href="#">Github</a>
+          <a href="#home">Início</a>
+          <a href="#register">Cadastro</a>
+          <a href="#movies">Filmes</a>
+          <a href="https://github.com/danielafarias/Horrorflix-CRUD" target="_blank" rel="noreferrer">Github</a>
         </nav>
       </div>
     </header>
@@ -26,19 +26,21 @@
     <main>
       <section class="principal-movie">
         <div class="container">
-          <form onsubmit="submitForm" method="post" id="register">
+          <div id="register">
             <h3 class="title">Cadastre um filme</h3>
             <div class="input">
               <label for="title">Título:</label>
-              <input id="title" placeholder="Informe o título do filme" name="title"/>
+              <input id="title" placeholder="Informe o título do filme" name="title" required/>
+              <small id="text-helper1">Insira o título do filme.</small>
             </div>
             <div class="input">
               <label for="cover">Capa:</label>
-              <input id="cover" placeholder="Insira o link da imagem" name="cover"/>
+              <input id="cover" placeholder="Insira o link da imagem" name="cover" required/>
+              <small id="text-helper2">Insira a capa do filme.</small>
             </div>
             <div class="input">
-              <label for="trailer">Trailer:</label>
-              <input id="trailer" placeholder="Insira o link do youtube" name="trailer"/>
+              <label for="sinopse">Sinopse:</label>
+              <input id="sinopse" placeholder="Resuma o filme" name="sinopse"/>
             </div>
             <div class="input">
               <label for="genre">Gênero:</label>
@@ -73,35 +75,34 @@
             </div>
             <div class="buttons">
               <button
-                role="button"
-                type="submit"
+                onclick="postMovie()"
                 class="button"
               >
                 <i class="fas fa-paper-plane"></i>
                 Enviar
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </section>
     </main>
 
     <div class="movies" id="movies">
      <section id="cards">
-      <div class="item" id="item">
+      <!-- <div class="item" id="item">
         <img
           class="movie-box"
           id="cover"
           src="../public/img/mini01.jpg"
           alt="Poster de um filme"
         />
-      </div>
+      </div> -->
      </section>
     </div>
 
     <section class="modal" id="modal">
       <header>
-        <h2>Detalhes do Filme</h2>
+        <h2>Filme</h2>
         <button id="close"><i class="fas fa-times"></i></button>
       </header>
       <main id="modal-content">
@@ -150,7 +151,7 @@
     </section>
 
     
-    <script src="../public/js/scripts.js"></script>
+    <script type="text/javascript" src="../public/js/scripts.js"></script>
 
     <script
       src="https://kit.fontawesome.com/7a7baf6e14.js"
