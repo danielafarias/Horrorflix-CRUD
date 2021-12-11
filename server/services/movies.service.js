@@ -3,15 +3,15 @@ const Movies = [
         id: 1,
         title: "Brinquedo Assassino",
         cover: "https://br.web.img2.acsta.net/pictures/14/10/10/18/18/494547.jpg",
-        sinopse: "https://www.youtube.com/embed/z90_HJnqc3A",
+        sinopse: "Uma mãe solteira dá a seu filho o boneco mais desejado para o seu aniversário, mas eles descobrirão que ele é possuído pela alma de um assassino em série.",
         genre: "Thriller",
         score: 10
     },
     {
         id: 2,
-        title: "Brinquedo Assassino",
+        title: "O Grito",
         cover: "https://upload.wikimedia.org/wikipedia/pt/1/13/The_Grudge.jpg",
-        sinopse: "https://www.youtube.com/embed/IcyoEBGFwWU",
+        sinopse: "Em Tóquio, uma casa comum foi palco de uma morte violenta que deixou o local marcado. A estudante americana Karen Davis, que não sabe do passado da casa, concorda em substituir uma colega, assistente social, que deveria ir àquele lugar.",
         genre: "Sobrenatural",
         score: 10
     },
@@ -19,7 +19,7 @@ const Movies = [
         id: 3,
         title: "Halloween Kills",
         cover: "https://br.web.img3.acsta.net/pictures/21/06/28/13/19/4959159.jpg",
-        sinopse: "https://www.youtube.com/embed/Ljhe6DHyPVA",
+        sinopse: "A saga de Michael Myers e Laurie Strode continua no próximo capítulo emocionante da série de Halloween.",
         genre: "Slasher",
         score: 7
     },

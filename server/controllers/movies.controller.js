@@ -15,7 +15,7 @@ const postMovie = (req, res) => {
     const movie = req.body;
     console.log(req.body);
     const newMovie = moviesService.postMovieService(movie);
-    res.send({message: `Filme ${ newMovie.title } foi cadastrado com sucesso.`})
+    res.send(newMovie)
 }
 
 const putMovie = (req, res) => {
@@ -23,7 +23,7 @@ const putMovie = (req, res) => {
     const movieEdit = req.body
     const edit = moviesService.putMovieService(idParam, movieEdit);
     if(edit) {
-        res.send({message: "O filme foi alterado com sucesso."})
+        res.send(edit)
     } else {
         res.status(404).send({message: "Filme não encontrado."})
     }
@@ -31,7 +31,7 @@ const putMovie = (req, res) => {
 
 const deleteMovie = (req, res) => {
     const deletedMovie = vagasService.deleteMovieService(req.params.id);
-    res.send({message: `O filme ${deletedMovie.title} foi excluído com sucesso.`});
+    res.send(deletedMovie);
 }
 
 module.exports = {

@@ -1,9 +1,25 @@
 const apiUrl = "http://localhost:3000";
-let editMode = false;
-let editId = 0;
 
-const cards = document.getElementById("cards");
+// --------------------------- GET ELEMENT HTML -------------------------------
+var register = document.getElementById("principal-movie");
+var close = document.getElementById("close");
+var movies = document.getElementById("movies");
+var cards = document.getElementById("cards");
+var modal = document.getElementById("modal");
+var modal2 = document.getElementById("edit");
+var modalContent = document.getElementById("modal-content");
+var modalContent2 = document.getElementById("edit-content");
 
+var title = document.getElementById("title").value;
+var cover = document.getElementById("cover").value;
+var sinopse = document.getElementById("sinopse").value;
+var genre = document.getElementById("genre").value;
+var score = document.getElementById("score").value;
+
+var textHelper1 = document.getElementById("text-helper1");
+var textHelper2 = document.getElementById("text-helper2");
+
+// --------------------------- GET ALL MOVIES -------------------------------
 const getMovies = async () => {
   const response = await fetch(`${apiUrl}/movies`);
   const movies = await response.json();
@@ -25,18 +41,14 @@ const getMovies = async () => {
   });
 };
 
-// getMovies();
-
+// --------------------------- MODAL DETALHES -------------------------------
 const movieDetails = async (id) => {
   const response = await fetch(`${apiUrl}/movies/${id}`);
   const movie = await response.json();
 
-  var modal = document.getElementById("modal");
- 
   modal.style.display = "block";
 
-
-  document.getElementById("modal-content").insertAdjacentHTML(
+  modalContent.insertAdjacentHTML(
     "beforeend",
     `
             <div class="actions">
@@ -75,17 +87,15 @@ const movieDetails = async (id) => {
   );
 };
 
+// --------------------------- MODAL EDIÇÃO -------------------------------
 const movieOpenEdit = async (id) => {
-  document.getElementById("modal-content").innerHTML = "";
+  modalContent.innerHTML = "";
   const response = await fetch(`${apiUrl}/movies/${id}`);
   const movie = await response.json();
 
-  var modal = document.getElementById("modal");
- 
-  modal.style.display = "block";
+  modal2.style.display = "block";
 
-
-  document.getElementById("modal-content").insertAdjacentHTML(
+  modalContent2.insertAdjacentHTML(
     "beforeend",
     `
             <div class="actions">
@@ -98,7 +108,7 @@ const movieOpenEdit = async (id) => {
                     <button
                         role="button"
                         class="button"
-                        onclick="putVaga(${movie.id})"
+                        onclick="updateMovie(${movie.id})"
                     >
                     <i class="fas fa-edit"></i>
                         Confirmar alteração
@@ -107,12 +117,14 @@ const movieOpenEdit = async (id) => {
                     </div>
             </div>
             <article id="edit-ver">
-              <input value="${movie.title}"/>
-              <input value="${movie.cover}"/>
-              <input value="${movie.sinopse}"/>
+              <input value="${movie.title}" id="title" name="title"/>
+              <input value="${movie.cover}" id="cover" name="cover"/>
+              <input value="${movie.sinopse}" id="sinopse" name="sinopse"/>
               <div class="badges-edit">
-              <div class="badge"><i class="fas fa-film"></i> <select value="${movie.genre}">
-              <option>Terror Psicológico</option>
+              <div class="badge"><i class="fas fa-film"></i> 
+              <select value="${movie.genre}" id="genre" name="genre">
+                <option disabled selected>Selecione o gênero</option>
+                <option>Terror Psicológico</option>
                 <option>Thriller</option>
                 <option>Sobrenatural</option>
                 <option>Found Footage</option>
@@ -125,7 +137,9 @@ const movieOpenEdit = async (id) => {
                 <option>Terror Teen</option>
               </select></div>
 
-              <div class="badge"><i class="fas fa-star"></i> <select value="${movie.score}">
+              <div class="badge"><i class="fas fa-star"></i> 
+              <select value="${movie.score}" id="score" name="score">
+              <option disabled selected>Avalie</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -142,38 +156,34 @@ const movieOpenEdit = async (id) => {
             </article>
     `
   );
+  console.log(document.getElementById("title").value);
 };
 
+// --------------------------- POST MOVIE -------------------------------
 const postMovie = async () => {
-  const title = document.getElementById("title").value;
-  const cover = document.getElementById("cover").value;
-  const sinopse = document.getElementById("sinopse").value;
-  const genre = document.getElementById("genre").value;
-  const score = document.getElementById("score").value;
-  
   const movie = {
     title,
     cover,
     sinopse,
     genre,
-    score
+    score,
   };
+  console.log(movie);
 
   if (title != "" && cover != "") {
-  const response = await fetch(`${apiUrl}/movies/create`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(movie),
-  });
-  const data = await response.json();
+    const response = await fetch(`${apiUrl}/movies/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(movie),
+    });
+    const data = await response.json();
 
-  alert(`O filme foi cadastrado com sucesso!`);
-  // faz a chamada para a api com algumas configuracoes****
-  cards.insertAdjacentHTML(
-    "beforeend",
-    `
+    alert(`O filme foi cadastrado com sucesso!`);
+    cards.insertAdjacentHTML(
+      "beforeend",
+      `
           <div class="item" id="item" key="${data.id}" onclick="movieDetails(${data.id})">
               <img
                   class="movie-box"
@@ -182,121 +192,102 @@ const postMovie = async () => {
               />
           </div>
       `
-  );
-  getMovies();
-  limpaCampos();
-  window.location.reload();
+    );
+    getMovies();
+    limpaCampos();
+    window.location.reload();
   } else {
-    var textHelper1 = document.getElementById("text-helper1");
-    var textHelper2 = document.getElementById("text-helper2");
-
     textHelper1.style.display = "block";
     textHelper2.style.display = "block";
   }
 };
 
-const putVaga = async (id) => {
+// --------------------------- PUT MOVIE -------------------------------
+const updateMovie = async (id) => {
   const title = document.getElementById("title").value;
   const cover = document.getElementById("cover").value;
   const sinopse = document.getElementById("sinopse").value;
   const genre = document.getElementById("genre").value;
   const score = document.getElementById("score").value;
-  
+
   const movie = {
     title,
     cover,
     sinopse,
     genre,
-    score
+    score,
   };
 
- if (title != "" && cover != "") {
-  const response = await fetch(`${apiUrl}/vagas/edit/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(movie),
-  });
-  const data = await response.json();
-  alert(data.message);
-  // faz a chamada para a api com algumas configuracoes****
-  cards.insertAdjacentHTML(
-    "beforeend",
-    `
-          <div class="item" id="item" key="${movie.id}" onclick="movieDetails(${movie.id})">
+  if (title != "" && cover != "") {
+    const response = await fetch(`${apiUrl}/vagas/edit/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(movie),
+    });
+    const data = await response.json();
+    alert("O filme foi editado com sucesso!");
+    console.log(data);
+    cards.insertAdjacentHTML(
+      "beforeend",
+      `
+          <div class="item" id="item" key="${data.id}" onclick="movieDetails(${data.id})">
               <img
                   class="movie-box"
-                  src="${movie.cover}"
+                  src="${data.cover}"
                   alt="Poster de um filme"
               />
           </div>
       `
-  );
-  getVagas();
-  limpaCampos();
-
-  modoEdicao = false;
-  idEdicao = 0;
- }
+    );
+    getVagas();
+    limpaCampos();
+    window.location.reload();
+  }
 };
 
-// preenche os dados do formulario de acordo com a vaga encontrada no backend pelo seu id
-const editaVaga = async (id) => {
-  modoEdicao = true;
-  idEdicao = id;
-
-  // iremos receber o id e atraves do id fazer uma chamdada para a api para buscar os dados de uma vaga por id
-  const vaga = await getById(id);
-
-  // iremos popular os inputs com os valores recebidos da chamada
-  document.getElementById("empresa").value = vaga.empresa;
-  document.getElementById("oportunidade").value = vaga.oportunidade;
-  document.getElementById("tipo").value = vaga.tipo;
-  document.getElementById("salario").value = vaga.salario;
-};
-
-// recebe um id e faz a chamada para a api e retorna o objeto encontrado
-const getById = async (id) => {
-  const response = await fetch(`${apiUrl}/vagas/${id}`);
-  const vaga = await response.json();
-  return vaga;
-};
-
-//[DELETE] http://localhost:3000/vagas/delete/1 Recebo um id e excluo a vaga do backend
+// --------------------------- DELETE MOVIE -------------------------------
 const deleteVaga = async (id) => {
   const response = await fetch(`${apiUrl}/vagas/delete/${id}`, {
     method: "DELETE",
   });
   const result = await response.json();
   alert(result.message);
-
-  // limpos a lista de vagas para que possa ser renderizada novamente sem a vaga que excluimos
   lista.innerHTML = "";
   getVagas();
 };
 
-// limpa os campos do formulario (inputs)
+// --------------------------- UTILS -----------------------------------
 const limpaCampos = () => {
-  document.getElementById("title").value = "";
-  document.getElementById("cover").value = "";
-  document.getElementById("sinopse").value = "";
-  document.getElementById("genre").value = "";
-  document.getElementById("score").value = "";
+  title = "";
+  cover = "";
+  sinopse = "";
+  genre = "";
+  score = "";
 };
 
-////////////////////////////////////////////////////////////////////////////////
-
-
-var close = document.getElementById("close");
+// --------------------------- CLOSE MODAL -------------------------------
 close.onclick = function () {
   modal.style.display = "none";
+  modal2.style.display = "none";
 
-  document.getElementById("modal-content").innerHTML = "";
+  modalContent.innerHTML = "";
+  modalContent2.innerHTML = "";
 };
 
-// window.onclick = function () {
-//   modal.style.display = "none";
+register.onclick = function () {
+  modal.style.display = "none";
+  modal2.style.display = "none";
 
-//   document.getElementById("modal-content").innerHTML = "";
-// };
+  modalContent.innerHTML = "";
+  modalContent2.innerHTML = "";
+};
+
+movies.onclick = function () {
+  modal.style.display = "none";
+  modal2.style.display = "none";
+
+  modalContent.innerHTML = "";
+  modalContent2.innerHTML = "";
+};

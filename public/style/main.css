@@ -22,11 +22,13 @@ body {
     position: relative; 
 }
 
-
 header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: fixed;
+    background-color: var(--black);
+    width: 100%;
 }
 
 header .logo {
@@ -153,7 +155,15 @@ header nav a:hover {
    width: 300px;
    height: 400px;
    margin-top: 1rem;
+   cursor: pointer;
+    
+   transition: .3s ease all;
 }
+
+.movies #cards .item:hover {
+    width: 310px;
+    height: 410px;
+ }
 
 
 .modal {

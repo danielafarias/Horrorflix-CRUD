@@ -24,7 +24,7 @@
     </header>
 
     <main>
-      <section class="principal-movie">
+      <section class="principal-movie" id="principal-movie">
         <div class="container">
           <div id="register">
             <h3 class="title">Cadastre um filme</h3>
@@ -45,6 +45,7 @@
             <div class="input">
               <label for="genre">Gênero:</label>
               <select id="genre" name="genre">
+                <option disabled selected>Selecione o gênero</option>
                 <option>Terror Psicológico</option>
                 <option>Thriller</option>
                 <option>Sobrenatural</option>
@@ -58,9 +59,10 @@
                 <option>Terror Teen</option>
               </select>
             </div>
-            <div class="input" name="genre">
+            <div class="input">
               <label for="score">Nota:</label>
-              <select id="score">
+              <select id="score" name="score">
+                <option disabled selected>Avalie</option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -89,14 +91,7 @@
 
     <div class="movies" id="movies">
      <section id="cards">
-      <!-- <div class="item" id="item">
-        <img
-          class="movie-box"
-          id="cover"
-          src="../public/img/mini01.jpg"
-          alt="Poster de um filme"
-        />
-      </div> -->
+      <!-- CARDS DE FILMES -->
      </section>
     </div>
 
@@ -106,47 +101,17 @@
         <button id="close"><i class="fas fa-times"></i></button>
       </header>
       <main id="modal-content">
-          <!-- <div class="actions">
-              <img
-                class="movie-box"
-                src="../public/img/mini01.jpg"
-                alt="Poster de um filme"
-              />
-            <div class="buttons">
-                <button
-                  role="button"
-                  class="button"
-                  target="_blank"
-                >
-                <i class="fas fa-edit"></i>
-                  Editar
-                </button>
-                <button
-                  role="button"
-                  class="button"
-                  target="_blank"
-                >
-                <i class="fas fa-trash"></i></i>
-                  Apagar
-                </button>
-              </div>
-          </div>
-        <article>
-          <h3>Brinquedo Assasino</h3>
-          <div class="badges">
-            <div class="badge"><i class="fas fa-film"></i> Thriller</div>
-            <div class="badge"><i class="fas fa-star"></i> 10</div>
-          </div>
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/z90_HJnqc3A"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </article> -->
+          <!-- MODAL  -->
+      </main>
+    </section>
+
+    <section class="modal" id="edit">
+      <header>
+        <h2>Filme</h2>
+        <button id="close"><i class="fas fa-times"></i></button>
+      </header>
+      <main id="edit-content">
+          <!-- MODAL  -->
       </main>
     </section>
 
