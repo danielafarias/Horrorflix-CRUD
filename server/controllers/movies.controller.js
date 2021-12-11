@@ -8,14 +8,14 @@ const getMovies = (req, res) => {
 const getMoviesById = (req, res) => {
     const idParam = req.params.id;
     const movie = moviesService.getMoviesByIdService(idParam);
-    res.send(movie)
+    res.send(movie);
 }
 
 const postMovie = (req, res) => {
     const movie = req.body;
     console.log(req.body);
     const newMovie = moviesService.postMovieService(movie);
-    res.send(newMovie)
+    res.send({message: `Filme ${ newMovie.title } cadastrado com sucesso.`})
 }
 
 const putMovie = (req, res) => {
@@ -23,15 +23,15 @@ const putMovie = (req, res) => {
     const movieEdit = req.body
     const edit = moviesService.putMovieService(idParam, movieEdit);
     if(edit) {
-        res.send(edit)
+        res.send({message: "Filme editado com sucesso."})
     } else {
         res.status(404).send({message: "Filme não encontrado."})
     }
 }
 
 const deleteMovie = (req, res) => {
-    const deletedMovie = vagasService.deleteMovieService(req.params.id);
-    res.send(deletedMovie);
+    const deletedMovie = moviesService.deleteMovieService(req.params.id);
+    res.send({message: `O filme ${deletedMovie.title} foi apagado com sucesso`});
 }
 
 module.exports = {
