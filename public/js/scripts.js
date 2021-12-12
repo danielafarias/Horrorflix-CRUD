@@ -67,7 +67,7 @@ const movieDetails = async (id) => {
                     <button
                         role="button"
                         class="button"
-                        onclick="movieOpenEdit()"
+                        onclick="movieOpenEdit(${movie.id})"
                     >
                     <i class="fas fa-edit"></i>
                         Editar
@@ -101,95 +101,95 @@ const movieDetails = async (id) => {
 };
 
 // --------------------------- MODAL EDIÇÃO -------------------------------
-const movieOpenEdit = async () => {
+const movieOpenEdit = async (id) => {
   
-  document.getElementById("modal").style.display = "none";
+  document.getElementById("modal-content").style.display = "none";
   
   document.getElementById("edit").style.display = "block";
   
-  // const response = await fetch(`${apiUrl}/movies/${id}`);
-  // const data = await response.json();
+  const response = await fetch(`${apiUrl}/movies/${id}`);
+  const data = await response.json();
 
-  // var title = document.getElementById("title").value = data.title;
-  // var cover = document.getElementById("cover").value = data.cover;
-  // var sinopse = document.getElementById("sinopse").value = data.sinopse;
-  // var genre = document.getElementById("genre").value = data.genre;
-  // var score = document.getElementById("score").value = data.score;
+  var title = document.getElementById("title").value = data.title;
+  var cover = document.getElementById("cover").value = data.cover;
+  var sinopse = document.getElementById("sinopse").value = data.sinopse;
+  var genre = document.getElementById("genre").value = data.genre;
+  var score = document.getElementById("score").value = data.score;
 
-  // console.log(data);
-  // console.log(document.getElementById("title").value)
+  console.log(data);
+  console.log(document.getElementById("title").value)
 
-  // document.getElementById("edit-content").insertAdjacentHTML(
-  //   "beforeend",
-  //   `
-  //           <div class="actions">
-  //               <img
-  //               class="movie-box"
-  //               src="${cover}"
-  //               alt="Poster de um filme"
-  //               />
-  //               <div class="buttons">
-  //                   <button
-  //                       role="button"
-  //                       class="button"
-  //                       id="edit-btn"
-  //                   >
-  //                   <i class="fas fa-edit"></i>
-  //                       Confirmar alteração
-  //                   </button>
+  document.getElementById("edit-content").insertAdjacentHTML(
+    "beforeend",
+    `
+            <div class="actions">
+                <img
+                class="movie-box"
+                src="${cover}"
+                alt="Poster de um filme"
+                />
+                <div class="buttons">
+                    <button
+                        role="button"
+                        class="button"
+                        id="edit-btn"
+                    >
+                    <i class="fas fa-edit"></i>
+                        Confirmar alteração
+                    </button>
                     
-  //               </div>
-  //           </div>
-  //           <article id="edit-ver">
-  //             <input defaultValue="${title}" id="title" name="title" placeholder="Altere o título"/>
-  //             <input defaultValue="${cover}" id="cover" name="cover" placeholder="Altere a capa"/>
-  //             <input defaultValue="${sinopse}" id="sinopse" name="sinopse" placeholder="Altere a sinopse"/>
-  //             <div class="badges-edit">
-  //             <div class="badge"><i class="fas fa-film"></i> 
-  //             <select defaultValue="${genre}" id="genre" name="genre">
-  //               <option disabled selected>Selecione o gênero</option>
-  //               <option>Terror Psicológico</option>
-  //               <option>Thriller</option>
-  //               <option>Sobrenatural</option>
-  //               <option>Found Footage</option>
-  //               <option>Gore</option>
-  //               <option>Slasher</option>
-  //               <option>Body Horror</option>
-  //               <option>Trash</option>
-  //               <option>Terror Cósmico</option>
-  //               <option>Terror Cômico</option>
-  //               <option>Terror Teen</option>
-  //             </select></div>
+                </div>
+            </div>
+            <article id="edit-ver">
+              <input defaultValue="${title}" id="title" name="title" placeholder="Altere o título"/>
+              <input defaultValue="${cover}" id="cover" name="cover" placeholder="Altere a capa"/>
+              <input defaultValue="${sinopse}" id="sinopse" name="sinopse" placeholder="Altere a sinopse"/>
+              <div class="badges-edit">
+              <div class="badge"><i class="fas fa-film"></i> 
+              <select defaultValue="${genre}" id="genre" name="genre">
+                <option disabled selected>Selecione o gênero</option>
+                <option>Terror Psicológico</option>
+                <option>Thriller</option>
+                <option>Sobrenatural</option>
+                <option>Found Footage</option>
+                <option>Gore</option>
+                <option>Slasher</option>
+                <option>Body Horror</option>
+                <option>Trash</option>
+                <option>Terror Cósmico</option>
+                <option>Terror Cômico</option>
+                <option>Terror Teen</option>
+              </select></div>
 
-  //             <div class="badge"><i class="fas fa-star"></i> 
-  //             <select defaultValue="${score}" id="score" name="score">
-  //             <option disabled selected>Avalie</option>
-  //             <option>1</option>
-  //             <option>2</option>
-  //             <option>3</option>
-  //             <option>4</option>
-  //             <option>5</option>
-  //             <option>6</option>
-  //             <option>7</option>
-  //             <option>8</option>
-  //             <option>9</option>
-  //             <option>10</option>
-  //             </select></div>
-  //             </div>
-  //             <div class="modal-checkbox">
-  //                 <div class="checkbox">
-  //                 <i class="far fa-eye"></i><label for="status"> Assistido? </label><br>
-  //                 <input id="status" type="checkbox" name="status">
-  //                 </div>
-  //               </div>
-  //           </article>
-  //   `
-  // );
+              <div class="badge"><i class="fas fa-star"></i> 
+              <select defaultValue="${score}" id="score" name="score">
+              <option disabled selected>Avalie</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              </select></div>
+              </div>
+              <div class="modal-checkbox">
+                  <div class="checkbox">
+                  <i class="far fa-eye"></i><label for="status"> Assistido? </label><br>
+                  <input id="status" type="checkbox" name="status">
+                  </div>
+                </div>
+            </article>
+    `
+  );
   
-  // document.getElementById("edit-btn").onclick = function () {
-  //   putMovie(data.id)
-  //   console.log(document.getElementById("title").value);
-  // }
+  document.getElementById("edit-btn").onclick = function () {
+    putMovie(data.id)
+    console.log(document.getElementById("title").value);
+  }
 
 };
 
@@ -244,50 +244,50 @@ const postMovie = async () => {
 };
 
 // --------------------------- PUT MOVIE -------------------------------
-// const putMovie = async (id) => {
-//   const title = document.getElementById("title").value;
-//   const cover = document.getElementById("cover").value;
-//   const sinopse = document.getElementById("sinopse").value;
-//   const genre = document.getElementById("genre").value;
-//   const score = document.getElementById("score").value;
-//   const status = document.getElementById("status").checked;
+const putMovie = async (id) => {
+  const title = document.getElementById("title").value;
+  const cover = document.getElementById("cover").value;
+  const sinopse = document.getElementById("sinopse").value;
+  const genre = document.getElementById("genre").value;
+  const score = document.getElementById("score").value;
+  const status = document.getElementById("status").checked;
 
-//   const movieEdited = {
-//     title,
-//     cover,
-//     sinopse,
-//     genre,
-//     score,
-//     status
-//   };
+  const movieEdited = {
+    title,
+    cover,
+    sinopse,
+    genre,
+    score,
+    status
+  };
 
 
-//   console.log(title);
+  console.log(title);
 
-//     const response = await fetch(`${apiUrl}/movies/edit/${id}`, {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(movieEdited),
-//     }); 
-//     const data = await response.json();
-//     alert(data.message);
-//     document.getElementById("cards").insertAdjacentHTML(
-//       "beforeend",
-//       `
-//           <div class="item" id="item" key="${data.id}" onclick="movieDetails(${data.id})">
-//               <img
-//                   class="movie-box"
-//                   src="${data.cover}"
-//                   alt="Poster de um filme"
-//               />
-//           </div>
-//       `
-//     );
-//     getMovies();
-//     window.location.reload();
-// };
+    const response = await fetch(`${apiUrl}/movies/edit/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(movieEdited),
+    }); 
+    const data = await response.json();
+    alert(data.message);
+    document.getElementById("cards").insertAdjacentHTML(
+      "beforeend",
+      `
+          <div class="item" id="item" key="${data.id}" onclick="movieDetails(${data.id})">
+              <img
+                  class="movie-box"
+                  src="${data.cover}"
+                  alt="Poster de um filme"
+              />
+          </div>
+      `
+    );
+    getMovies();
+    window.location.reload();
+};
 
 // --------------------------- DELETE MOVIE -------------------------------
 const deleteMovie = async (id) => {
@@ -337,62 +337,62 @@ document.getElementById("movies").onclick = function () {
 };
 
 // --------------------------- PUT MOVIES ------------------------
-const submitEdit = async () => {
+// const submitEdit = async () => {
 
-  const title = document.getElementById("titleEdit").value;
-  const cover = document.getElementById("coverEdit").value;
-  const sinopse = document.getElementById("sinopseEdit").value;
-  const genre = document.getElementById("genreEdit").value;
-  const score = document.getElementById("scoreEdit").value;
-  const status = document.getElementById("statusEdit").checked;
+//   const title = document.getElementById("titleEdit").value;
+//   const cover = document.getElementById("coverEdit").value;
+//   const sinopse = document.getElementById("sinopseEdit").value;
+//   const genre = document.getElementById("genreEdit").value;
+//   const score = document.getElementById("scoreEdit").value;
+//   const status = document.getElementById("statusEdit").checked;
 
-  const movie = {
-    title,
-    cover,
-    sinopse,
-    genre,
-    score,
-    status
-  }
+//   const movie = {
+//     title,
+//     cover,
+//     sinopse,
+//     genre,
+//     score,
+//     status
+//   }
   
-  putMovie(movie);
-}
+//   putMovie(movie);
+// }
 
-const putMovie = async (movie) => {
+// const putMovie = async (movie) => {
 
-  const response = await fetch(`${apiUrl}/movies/edit/${editId}`, {
-      method: 'PUT',
-      headers: {
-          "Content-Type": "application/json"
-      },
-      body: JSON.stringify(movie)
-  })
-  const data = await response.json();
-  alert(data.message);
-  document.getElementById("cards").innerHTML = '';
-  getMovies();
-  reset();
-}
+//   const response = await fetch(`${apiUrl}/movies/edit/${editId}`, {
+//       method: 'PUT',
+//       headers: {
+//           "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(movie)
+//   })
+//   const data = await response.json();
+//   alert(data.message);
+//   document.getElementById("cards").innerHTML = '';
+//   getMovies();
+//   reset();
+// }
 
-const movieEdit = async (id) => {
-  editId = id;
+// const movieEdit = async (id) => {
+//   editId = id;
 
-  const movie = await getById(id);
+//   const movie = await getById(id);
 
-  document.getElementById("titleEdit").value = movie.title;
-  document.getElementById("coverEdit").value = movie.cover;
-  document.getElementById("coverEdit").src = movie.cover;
-  document.getElementById("sinopseEdit").value = movie.sinopse;
-  document.getElementById("genreEdit").value = movie.genre;
-  document.getElementById("scoreEdit").value = movie.score;
-  document.getElementById("statusEdit").checked = movie.status;
+//   document.getElementById("titleEdit").value = movie.title;
+//   document.getElementById("coverEdit").value = movie.cover;
+//   document.getElementById("coverEdit").src = movie.cover;
+//   document.getElementById("sinopseEdit").value = movie.sinopse;
+//   document.getElementById("genreEdit").value = movie.genre;
+//   document.getElementById("scoreEdit").value = movie.score;
+//   document.getElementById("statusEdit").checked = movie.status;
 
-  console.log(movie);
-  console.log(document.getElementById("titleEdit").value);
-}
+//   console.log(movie);
+//   console.log(document.getElementById("titleEdit").value);
+// }
 
-const getById = async (id) => {
-  const response = await fetch(`${apiUrl}/movies/${id}`)
-  const movie = await response.json();
-  return movie
-}
+// const getById = async (id) => {
+//   const response = await fetch(`${apiUrl}/movies/${id}`)
+//   const movie = await response.json();
+//   return movie
+// }
