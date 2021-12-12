@@ -13,7 +13,6 @@ const getMoviesById = (req, res) => {
 
 const postMovie = (req, res) => {
     const movie = req.body;
-    console.log(req.body);
     const newMovie = moviesService.postMovieService(movie);
     res.send({message: `Filme ${ newMovie.title } cadastrado com sucesso.`})
 }

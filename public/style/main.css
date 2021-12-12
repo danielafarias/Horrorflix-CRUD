@@ -97,6 +97,16 @@ header nav a:hover {
    border: none;
 }
 
+.principal-movie .container #register .input .checkbox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+ }
+
+ .principal-movie .container #register .input .checkbox input {
+    margin: 1.5rem;
+ }
+
 .principal-movie .container #register .input #text-helper1 {
     color: var(--red);
     display: none;
@@ -238,9 +248,32 @@ header nav a:hover {
    margin: 1rem 0;
 }
 
+#sinopse {
+    margin-bottom: 1rem;
+ }
+
 .modal main article .badges .badge {
     background-color: var(--red);
     padding: 0.5rem;
+ }
+
+ .modal .modal-checkbox .checkbox {
+     background-color: var(--red);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+ }
+
+ .modal .modal-checkbox .checkbox input {
+    margin: 1rem;
+ }
+ .modal .modal-checkbox .checkbox label {
+    margin: 0.5rem;
+ }
+
+ .input-checked {
+    display: none;
  }
 
 .modal #edit-ver input {

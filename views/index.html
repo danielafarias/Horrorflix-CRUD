@@ -75,6 +75,12 @@
                 <option>10</option>
               </select>
             </div>
+            <div class="input">
+              <div class="checkbox">
+                <label for="status"> Assistido? </label><br>
+                <input id="status" type="checkbox" name="status" value="assistido">
+              </div>
+            </div>
             <div class="buttons">
               <button
                 onclick="postMovie()"
@@ -111,11 +117,71 @@
         <button id="close"><i class="fas fa-times"></i></button>
       </header>
       <main id="edit-content">
-          <!-- MODAL  -->
+        <div class="actions">
+          <img
+          id="coverEdit"
+          class="movie-box"
+          src=""
+          alt="Poster de um filme"
+          />
+          <div class="buttons">
+              <button
+                  role="button"
+                  class="button"
+                  onclick="submitEdit()"
+              >
+              <i class="fas fa-edit"></i>
+                  Confirmar alteração
+              </button>
+              
+          </div>
+      </div>
+      <article id="edit-ver">
+        <input id="titleEdit" name="title" placeholder="Altere o título"/>
+        <input id="coverEdit" name="cover" placeholder="Altere a capa"/>
+        <input id="sinopseEdit" name="sinopse" placeholder="Altere a sinopse"/>
+        <div class="badges-edit">
+        <div class="badge"><i class="fas fa-film"></i> 
+        <select id="genreEdit" name="genre">
+          <option disabled selected>Selecione o gênero</option>
+          <option>Terror Psicológico</option>
+          <option>Thriller</option>
+          <option>Sobrenatural</option>
+          <option>Found Footage</option>
+          <option>Gore</option>
+          <option>Slasher</option>
+          <option>Body Horror</option>
+          <option>Trash</option>
+          <option>Terror Cósmico</option>
+          <option>Terror Cômico</option>
+          <option>Terror Teen</option>
+        </select></div>
+
+        <div class="badge"><i class="fas fa-star"></i> 
+        <select id="scoreEdit" name="score">
+        <option disabled selected>Avalie</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        </select></div>
+        </div>
+        <div class="modal-checkbox">
+            <div class="checkbox">
+            <i class="far fa-eye"></i><label for="statusEdit"> Assistido? </label><br>
+            <input id="statusEdit" type="checkbox" name="status">
+            </div>
+          </div>
+      </article>
       </main>
     </section>
 
-    
     <script type="text/javascript" src="../public/js/scripts.js"></script>
 
     <script
