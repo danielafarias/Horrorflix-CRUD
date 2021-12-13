@@ -6,7 +6,7 @@ const Movies = [
         sinopse: "Uma mãe solteira dá a seu filho o boneco mais desejado para o seu aniversário, mas eles descobrirão que ele é possuído pela alma de um assassino em série.",
         genre: "Thriller",
         score: 10,
-        status: false,
+        status: true,
     },
     {
         id: 2,
@@ -25,6 +25,15 @@ const Movies = [
         genre: "Slasher",
         score: 7,
         status: false,
+    },
+    {
+        id: 4,
+        title: "Corra!",
+        cover: "https://br.web.img3.acsta.net/c_310_420/pictures/17/04/19/21/08/577190.jpg",
+        sinopse: "Chris (Daniel Kaluuya) é jovem negro que está prestes a conhecer a família de sua namorada caucasiana Rose (Allison Williams). A princípio, ele acredita que o comportamento excessivamente amoroso por parte da família dela é uma tentativa de lidar com o relacionamento de Rose com um rapaz negro, mas, com o tempo, Chris percebe que a família esconde algo muito mais perturbador.",
+        genre: "Thriller",
+        score: 7,
+        status: true,
     },
 ]
 
