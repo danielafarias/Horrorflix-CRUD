@@ -31,6 +31,25 @@ Clone o projeto:
 ```
 <git clone https://github.com/danielafarias/Horrorflix-CRUD.git>
 ```
+Em seguida, adicione as bibliotecas e dependências necessárias:
+```
+<cd Horrorflix-CRUD>
+```
+```
+<cd server>
+```
+```
+<npm init>
+```
+```
+<npm i nodemon -D>
+```
+```
+<npm i express --save>
+```
+```
+<npm i cors>
+```
 
 ## 🔪 Usando `<Horrorflix-CRUD>`
 
